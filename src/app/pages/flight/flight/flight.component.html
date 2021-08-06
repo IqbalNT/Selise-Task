@@ -1,0 +1,153 @@
+<div class="container">
+  <h2>Search for flight</h2>
+  <form [formGroup]="form" (ngSubmit)="onFlightSearch(form.value)" novalidate>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.xs="column"
+      fxLayoutGap="10px"
+    >
+      <mat-form-field
+        fxFlex="0 1 calc(25% - 10px)"
+        fxFlex.lt-md="0 1 calc(50% - 10px)"
+        fxFlex.lt-sm="100%"
+        fxFlex.xs="100%"
+        appearance="outline"
+        color="primary"
+      >
+        <mat-label>Departure airport code</mat-label>
+        <input
+          matInput
+          placeholder="Enter departure airport code"
+          formControlName="departureAirportCode"
+          required
+        />
+        <mat-error
+          *ngIf="
+            departureAirportCode.invalid &&
+            (departureAirportCode.dirty || departureAirportCode.touched)
+          "
+        >
+          <ng-container *ngIf="departureAirportCode.hasError('required')"
+            >Departure airport code is required.</ng-container
+          >
+          <ng-container *ngIf="departureAirportCode.hasError('alfaNumeric')"
+            >Invalid Input</ng-container
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        fxFlex="0 1 calc(25% - 10px)"
+        fxFlex.lt-md="0 1 calc(50% - 10px)"
+        fxFlex.lt-sm="100%"
+        fxFlex.xs="100%"
+        appearance="outline"
+        color="primary"
+      >
+        <mat-label>Arrival airport code</mat-label>
+        <input
+          matInput
+          placeholder="Enter arrival airport code"
+          formControlName="arrivalAirportCode"
+          required
+        />
+        <mat-error
+          *ngIf="
+            arrivalAirportCode.invalid &&
+            (arrivalAirportCode.dirty || arrivalAirportCode.touched)
+          "
+        >
+          <ng-container *ngIf="arrivalAirportCode.hasError('required')"
+            >Arival airport code is required.</ng-container
+          >
+          <ng-container *ngIf="arrivalAirportCode.hasError('alfaNumeric')"
+            >Invalid Input</ng-container
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        fxFlex="0 1 calc(25% - 10px)"
+        fxFlex.lt-md="0 1 calc(50% - 10px)"
+        fxFlex.lt-sm="100%"
+        fxFlex.xs="100%"
+        appearance="outline"
+        color="primary"
+      >
+        <mat-label>Departure date</mat-label>
+        <input
+          matInput
+          formControlName="departureDate"
+          [min]="currentDate"
+          [matDatepicker]="dp3"
+          (dateChange)="onChangeDepartureDate($event)"
+        />
+        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        <mat-error
+          *ngIf="
+            departureDate.invalid &&
+            (departureDate.dirty || departureDate.touched)
+          "
+        >
+          <ng-container *ngIf="departureDate.hasError('required')"
+            >Departure date is required.</ng-container
+          >
+          <ng-container *ngIf="departureDate.invalid"
+            >Departure date is invalid.</ng-container
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        fxFlex="0 1 calc(25% - 10px)"
+        fxFlex.lt-md="0 1 calc(50% - 10px)"
+        fxFlex.lt-sm="100%"
+        fxFlex.xs="100%"
+        appearance="outline"
+        color="primary"
+      >
+        <mat-label>Return date</mat-label>
+        <input
+          matInput
+          formControlName="returnDate"
+          [min]="minReturnDate"
+          [matDatepicker]="rp3"
+        />
+        <mat-datepicker-toggle matSuffix [for]="rp3"></mat-datepicker-toggle>
+        <mat-datepicker #rp3 disabled="false"></mat-datepicker>
+        <mat-error
+          *ngIf="returnDate.invalid && (returnDate.dirty || returnDate.touched)"
+        >
+          <ng-container *ngIf="returnDate.hasError('required')"
+            >Return date is required.</ng-container
+          >
+          <ng-container *ngIf="returnDate.invalid"
+            >Return date is invalid.</ng-container
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxLayout.xs="row" fxLayoutAlign="end" fxLayoutGap="20px">
+      <button mat-raised-button style="background-color: red; color: white;" (click)="onResetForm()">Reset</button>
+      <button mat-raised-button color="primary">Search</button>
+    </div>
+  </form>
+  <div
+    *ngIf="flightList.length"
+    fxLayout="row"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="space-between center"
+  >
+    <p>Departure airport: {{ departureAirportCode.value }}</p>
+    <p>Arival airport: {{ arrivalAirportCode.value }}</p>
+    <p>Departure Date: {{ departureDate.value | date }}</p>
+    <p>Return Date: {{ returnDate.value | date }}</p>
+  </div>
+  <div class="mt-2">
+    <app-flight-list
+      [flightList]="flightList"
+      [flightListBackUp]="flightList"
+    ></app-flight-list>
+  </div>
+</div>

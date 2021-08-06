@@ -1,0 +1,125 @@
+.filter-sidenav {
+  width: 280px;
+  border: 0 !important;
+  .mat-expansion-panel-header-title {
+    text-transform: uppercase;
+  }
+}
+.filter-row {
+  background: #fff;
+  padding: 8px 12px;
+}
+.all-flights {
+  min-height: 300px;
+  padding: 2px;
+  overflow: hidden;
+  &.p-left {
+    padding-left: 16px;
+  }
+}
+
+.flight-wrapper {
+  // height: 300px;
+  // overflow-y: auto;
+  // overflow-x: hidden;
+  margin: 8px -8px;
+  .col {
+    padding: 8px;
+  }
+}
+
+.filter-price {
+  .mat-slider-horizontal {
+    min-width: 110px;
+  }
+}
+
+.mat-icon-sm {
+  font-size: 18px;
+  line-height: 18px;
+  height: 18px;
+  width: 18px;
+  vertical-align: middle;
+}
+
+.float-right {
+  float: right;
+}
+
+.flight-item {
+  position: relative;
+  img {
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+  .title {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 10px;
+  }
+  .price{
+    font-weight: bold;
+  }
+}
+.flight-item-grid {
+  text-align: center;
+  position: relative;
+  img {
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+  .title {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 10px;
+  }
+  .price{
+    font-weight: bold;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+.mt-0 {
+  margin-top: 0px;
+  height: 65px;
+}
+
+@media (max-width: 575px) {
+  .mt-0 {
+    height: 80px;
+  }
+  .flight-item {
+    position: relative;
+    img {
+      max-width: 100%;
+      margin-bottom: 12px;
+    }
+    .title {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 10px;
+    }
+    p {
+      font-weight: 500;
+      font-size: 10px;
+    }
+  }
+  .filter-row {
+    p {
+      font-weight: 500;
+      font-size: 10px;
+    }
+  }
+  .text-center {
+    font-weight: 500;
+    font-size: 10px;
+  }
+}
