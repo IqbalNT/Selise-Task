@@ -123,10 +123,7 @@
           class="col"
         >
           <mat-card class="flight-item-grid">
-            <img
-              [src]="flight?.AirlineLogoAddress"
-              alt="'flight.AirlineName'"
-            />
+            <img [src]="flight?.AirlineLogoAddress" alt="'logo'" />
             <h3>{{ flight?.AirlineName }}</h3>
             <p>Inbound Duration: {{ flight?.InboundFlightsDuration }}</p>
             <p>Outbound Duration:{{ flight?.OutboundFlightsDuration }}</p>
@@ -152,10 +149,7 @@
           <mat-card class="flight-item">
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <div>
-                <img
-                  [src]="flight?.AirlineLogoAddress"
-                  alt="'flight.AirlineName'"
-                />
+                <img [src]="flight?.AirlineLogoAddress" alt="'logo'" />
                 <p class="title">{{ flight?.AirlineName }}</p>
               </div>
               <p>{{ flight?.InboundFlightsDuration }}</p>

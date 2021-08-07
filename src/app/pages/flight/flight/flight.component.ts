@@ -17,6 +17,7 @@ export class FlightComponent implements OnInit, OnDestroy {
   departureDateError: boolean = true;
   flightList: FlightList[] = [];
   flightListSub: Subscription;
+  isSearchBtnClicked: boolean = false;
   constructor(private fb: FormBuilder, private flightService: Flightservice) {}
 
   ngOnInit(): void {
@@ -56,26 +57,31 @@ export class FlightComponent implements OnInit, OnDestroy {
 
   onFlightSearch(values: FlightSearch) {
     if (this.form.valid) {
+      this.isSearchBtnClicked = true;
       this.flightListSub = this.flightService.getFlight(values).subscribe(
         (data) => {
+          this.isSearchBtnClicked = false;
+
           if (data.length) {
             this.flightList = data;
           }
         },
         (error) => {
+          this.isSearchBtnClicked = false;
+
           console.log('server error');
         }
       );
     }
   }
-  onResetForm(){
+  onResetForm() {
     this.flightList = [];
     this.form.patchValue({
-      departureAirportCode:'',
-      arrivalAirportCode:'',
-      departureDate:'',
-      returnDate:'',
-    })
+      departureAirportCode: '',
+      arrivalAirportCode: '',
+      departureDate: '',
+      returnDate: '',
+    });
   }
   ngOnDestroy(): void {
     if (this.flightListSub) {
