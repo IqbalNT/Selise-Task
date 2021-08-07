@@ -127,8 +127,16 @@
       </mat-form-field>
     </div>
     <div fxLayout.xs="row" fxLayoutAlign="end" fxLayoutGap="20px">
-      <button mat-raised-button style="background-color: red; color: white;" (click)="onResetForm()">Reset</button>
-      <button mat-raised-button color="primary">Search</button>
+      <button
+        mat-raised-button
+        style="background-color: red; color: white"
+        (click)="onResetForm()"
+      >
+        Reset
+      </button>
+      <button mat-raised-button color="primary" [disabled]="isSearchBtnClicked">
+        Search
+      </button>
     </div>
   </form>
   <div
